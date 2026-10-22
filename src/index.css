@@ -36,6 +36,21 @@
 }
 
 .halftone-bg {
+  background-color: #fcfaf2;
   background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
   background-size: 16px 16px;
 }
+
+.speed-lines {
+  background: repeating-conic-gradient(from 0deg, rgba(0,0,0,0.03) 0deg 10deg, transparent 10deg 20deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

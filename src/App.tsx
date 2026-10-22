@@ -312,42 +312,60 @@ export default function App() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {filteredProjects.map((proj: Project) => (
-              <a 
-                key={proj.title} 
-                href={proj.githubUrl} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="bg-white border-3 border-slate-900 rounded-xl p-5 flex flex-col justify-between shadow-[4px_4px_0px_#0f172a] hover:shadow-[6px_6px_0px_#0f172a] hover:-translate-y-1 transition-all group focus:outline-hidden focus:ring-2 focus:ring-slate-900 overflow-hidden"
-              >
-                <div className="overflow-hidden">
-                  <div className="flex items-center justify-between mb-3 gap-2">
-                    <span className={`text-[10px] font-black border-2 border-slate-900 px-2 py-0.5 rounded-md shrink-0 ${proj.badgeColor}`}>
-                      {proj.badge}
-                    </span>
-                    <SfxBadge text={proj.sfx} className="text-xs shrink-0" />
-                  </div>
-                  <h3 className="font-extrabold text-slate-900 text-base mb-1 group-hover:text-pink-600 transition-colors flex items-center justify-between gap-1 break-words">
-                    <span className="break-words">{proj.title}</span>
-                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-slate-900 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
-                  </h3>
-                  <p className="text-xs font-semibold text-slate-500 mb-2 break-words">
-                    {proj.tagline}
-                  </p>
-                  <p className="text-xs text-slate-700 leading-relaxed mb-4 break-words">
-                    {proj.description}
-                  </p>
-                </div>
+            {filteredProjects.map((proj: Project) => {
+              const CardTag = proj.isPrivate ? 'div' : 'a';
+              const cardProps = proj.isPrivate 
+                ? { role: 'article', 'aria-label': `${proj.title} (Private Repository)` }
+                : { href: proj.githubUrl, target: '_blank', rel: 'noreferrer' };
 
-                <div className="flex flex-wrap gap-1.5 pt-2 border-t-2 border-slate-100">
-                  {proj.tags.map((t: string, tid: number) => (
-                    <span key={tid} className="text-[10px] font-bold bg-slate-100 border border-slate-300 px-1.5 py-0.5 rounded text-slate-700 break-all">
-                      #{t}
-                    </span>
-                  ))}
-                </div>
-              </a>
-            ))}
+              return (
+                <CardTag 
+                  key={proj.title} 
+                  {...cardProps}
+                  className={`bg-white border-3 border-slate-900 rounded-xl p-5 flex flex-col justify-between shadow-[4px_4px_0px_#0f172a] transition-all group overflow-hidden ${
+                    proj.isPrivate 
+                      ? 'cursor-default' 
+                      : 'hover:shadow-[6px_6px_0px_#0f172a] hover:-translate-y-1 cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900'
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="flex items-center justify-between mb-3 gap-2 flex-wrap">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className={`text-[10px] font-black border-2 border-slate-900 px-2 py-0.5 rounded-md shrink-0 ${proj.badgeColor}`}>
+                          {proj.badge}
+                        </span>
+                        {proj.isPrivate && (
+                          <span className="text-[10px] font-black border-2 border-slate-900 bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded-md shrink-0 uppercase tracking-tight">
+                            Private Repo
+                          </span>
+                        )}
+                      </div>
+                      <SfxBadge text={proj.sfx} className="text-xs shrink-0" />
+                    </div>
+                    <h3 className="font-extrabold text-slate-900 text-base mb-1 group-hover:text-pink-600 transition-colors flex items-center justify-between gap-1 break-words">
+                      <span className="break-words">{proj.title}</span>
+                      {!proj.isPrivate && (
+                        <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-slate-900 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
+                      )}
+                    </h3>
+                    <p className="text-xs font-semibold text-slate-500 mb-2 break-words">
+                      {proj.tagline}
+                    </p>
+                    <p className="text-xs text-slate-700 leading-relaxed mb-4 break-words">
+                      {proj.description}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 pt-2 border-t-2 border-slate-100">
+                    {proj.tags.map((t: string, tid: number) => (
+                      <span key={tid} className="text-[10px] font-bold bg-slate-100 border border-slate-300 px-1.5 py-0.5 rounded text-slate-700 break-all">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </CardTag>
+              );
+            })}
           </div>
         </div>
 
@@ -379,7 +397,7 @@ export default function App() {
               </button>
               <button 
                 type="button"
-                onClick={() => { sound.playWhoosh(); setActiveSpeech("Model Context Protocol AST parsing reduces token costs by 70%!"); }}
+                onClick={() => { sound.playWhoosh(); setActiveSpeech("Model Context Protocol AST parsing reduces unnecessary context bloat!"); }}
                 className="bg-amber-50 border-2 border-slate-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_#0f172a] hover:scale-102 transition cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900 overflow-hidden"
               >
                 <Terminal className="w-6 h-6 mx-auto mb-2 text-amber-600 shrink-0" />

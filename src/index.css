@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #fdfbf7;
+    color: #1e293b;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
+.manga-panel {
+  border: 3px solid #0f172a;
+  box-shadow: 5px 5px 0px #0f172a;
+  transition: all 0.15s ease-in-out;
+}
+
+.manga-panel:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px #0f172a;
+}
+
+.manga-btn {
+  border: 2px solid #0f172a;
+  box-shadow: 3px 3px 0px #0f172a;
+  transition: all 0.1s ease-in-out;
+}
+
+.manga-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px #0f172a;
+}
+
+.manga-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #0f172a;
+}
+
+.halftone-bg {
+  background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}

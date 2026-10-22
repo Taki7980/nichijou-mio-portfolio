@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @layer base {
+  * {
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+  }
   body {
     background-color: #fdfbf7;
     color: #1e293b;

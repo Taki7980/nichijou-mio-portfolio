@@ -133,12 +133,12 @@ export default function App() {
   const allTags = ['All', 'Go', 'TypeScript', 'MCP Protocol', 'P2P', 'Security'];
 
   return (
-    <div className="min-h-screen halftone-bg py-8 px-4 sm:px-6 md:px-12 selection:bg-pink-300 selection:text-slate-900">
-      <div className="max-w-4xl mx-auto space-y-8">
+    <div className="min-h-screen halftone-bg py-8 px-4 sm:px-6 md:px-12 selection:bg-pink-300 selection:text-slate-900 overflow-x-hidden">
+      <div className="max-w-4xl mx-auto space-y-8 overflow-hidden">
         
         {/* Manga Top Banner */}
-        <MangaPanel className="flex flex-col md:flex-row items-center justify-between gap-6 relative">
-          <div className="absolute -right-8 -bottom-8 opacity-10 pointer-events-none select-none text-9xl font-black text-slate-900">
+        <MangaPanel className="flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+          <div className="absolute -right-6 -bottom-6 opacity-10 pointer-events-none select-none text-8xl sm:text-9xl font-black text-slate-900 hidden sm:block">
             日常
           </div>
 
@@ -146,15 +146,17 @@ export default function App() {
             <button 
               type="button" 
               onClick={triggerMioCelebration}
-              className="relative group cursor-pointer focus:outline-hidden focus:ring-4 focus:ring-pink-400 rounded-2xl"
+              className="relative group cursor-pointer focus:outline-hidden focus:ring-4 focus:ring-pink-400 rounded-2xl shrink-0"
               aria-label="Click to boost Mio's excitement level"
             >
-              <img 
-                src="/mio_profile.jpg" 
-                alt="Mio Naganohara Avatar" 
-                className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border-3 border-slate-900 shadow-[3px_3px_0px_#0f172a] group-hover:scale-105 group-hover:-rotate-2 transition-transform"
-              />
-              <span className="absolute -bottom-2 -right-2 bg-pink-400 border-2 border-slate-900 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-3 border-slate-900 shadow-[3px_3px_0px_#0f172a] group-hover:scale-105 group-hover:-rotate-2 transition-transform">
+                <img 
+                  src="/mio_profile.jpg" 
+                  alt="Mio Naganohara Avatar" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span className="absolute -bottom-2 -right-2 bg-pink-400 border-2 border-slate-900 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1 z-20">
                 <Heart className="w-3 h-3 fill-pink-600 text-pink-600" /> Mio Lv.{mioExcitement}
               </span>
             </button>
@@ -257,7 +259,7 @@ export default function App() {
               <button 
                 type="button"
                 onClick={() => { sound.playDramaticBoom(); triggerMioCelebration(); }}
-                className="relative border-3 border-slate-900 rounded-2xl overflow-hidden shadow-[4px_4px_0px_#0f172a] max-h-64 group cursor-pointer text-left focus:outline-hidden focus:ring-4 focus:ring-pink-400"
+                className="relative border-3 border-slate-900 rounded-2xl overflow-hidden shadow-[4px_4px_0px_#0f172a] w-full max-w-[320px] aspect-[4/3] group cursor-pointer text-left focus:outline-hidden focus:ring-4 focus:ring-pink-400"
                 aria-label="Mio Naganohara Dramatic Burst"
               >
                 <img 
@@ -268,7 +270,7 @@ export default function App() {
                 <div className="absolute top-2 right-2">
                   <SfxBadge text="ドドド" className="text-xl" />
                 </div>
-                <div className="absolute bottom-0 inset-x-0 bg-slate-950/80 text-white text-[11px] font-bold py-1.5 px-3 text-center">
+                <div className="absolute bottom-0 inset-x-0 bg-slate-950/85 text-white text-[11px] font-bold py-2 px-3 text-center leading-tight">
                   Mio Naganohara (Click for Dramatic Burst!)
                 </div>
               </button>
@@ -316,30 +318,30 @@ export default function App() {
                 href={proj.githubUrl} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="bg-white border-3 border-slate-900 rounded-xl p-5 flex flex-col justify-between shadow-[4px_4px_0px_#0f172a] hover:shadow-[6px_6px_0px_#0f172a] hover:-translate-y-1 transition-all group focus:outline-hidden focus:ring-2 focus:ring-slate-900"
+                className="bg-white border-3 border-slate-900 rounded-xl p-5 flex flex-col justify-between shadow-[4px_4px_0px_#0f172a] hover:shadow-[6px_6px_0px_#0f172a] hover:-translate-y-1 transition-all group focus:outline-hidden focus:ring-2 focus:ring-slate-900 overflow-hidden"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className={`text-[10px] font-black border-2 border-slate-900 px-2 py-0.5 rounded-md ${proj.badgeColor}`}>
+                <div className="overflow-hidden">
+                  <div className="flex items-center justify-between mb-3 gap-2">
+                    <span className={`text-[10px] font-black border-2 border-slate-900 px-2 py-0.5 rounded-md shrink-0 ${proj.badgeColor}`}>
                       {proj.badge}
                     </span>
-                    <SfxBadge text={proj.sfx} className="text-xs" />
+                    <SfxBadge text={proj.sfx} className="text-xs shrink-0" />
                   </div>
-                  <h3 className="font-extrabold text-slate-900 text-base mb-1 group-hover:text-pink-600 transition-colors flex items-center justify-between">
-                    <span>{proj.title}</span>
-                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-slate-900 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <h3 className="font-extrabold text-slate-900 text-base mb-1 group-hover:text-pink-600 transition-colors flex items-center justify-between gap-1 break-words">
+                    <span className="break-words">{proj.title}</span>
+                    <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-slate-900 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
                   </h3>
-                  <p className="text-xs font-semibold text-slate-500 mb-2">
+                  <p className="text-xs font-semibold text-slate-500 mb-2 break-words">
                     {proj.tagline}
                   </p>
-                  <p className="text-xs text-slate-700 leading-relaxed mb-4">
+                  <p className="text-xs text-slate-700 leading-relaxed mb-4 break-words">
                     {proj.description}
                   </p>
                 </div>
 
                 <div className="flex flex-wrap gap-1.5 pt-2 border-t-2 border-slate-100">
                   {proj.tags.map((t: string, tid: number) => (
-                    <span key={tid} className="text-[10px] font-bold bg-slate-100 border border-slate-300 px-1.5 py-0.5 rounded text-slate-700">
+                    <span key={tid} className="text-[10px] font-bold bg-slate-100 border border-slate-300 px-1.5 py-0.5 rounded text-slate-700 break-all">
                       #{t}
                     </span>
                   ))}
@@ -360,38 +362,38 @@ export default function App() {
               <button 
                 type="button"
                 onClick={() => { sound.playDramaticBoom(); setActiveSpeech("Go concurrency channels are bulletproof!"); }}
-                className="bg-sky-50 border-2 border-slate-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_#0f172a] hover:scale-102 transition cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900"
+                className="bg-sky-50 border-2 border-slate-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_#0f172a] hover:scale-102 transition cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900 overflow-hidden"
               >
-                <Server className="w-6 h-6 mx-auto mb-2 text-sky-600" />
-                <h3 className="font-black text-slate-900 text-sm">Distributed Core</h3>
-                <p className="text-xs font-semibold text-slate-600 mt-1">Go, Redis, Kafka, PostgreSQL, TCP protocols, Docker</p>
+                <Server className="w-6 h-6 mx-auto mb-2 text-sky-600 shrink-0" />
+                <h3 className="font-black text-slate-900 text-sm break-words">Distributed Core</h3>
+                <p className="text-xs font-semibold text-slate-600 mt-1 break-words">Go, Redis, Kafka, PostgreSQL, TCP protocols, Docker</p>
               </button>
               <button 
                 type="button"
                 onClick={() => { sound.playBlip(); setActiveSpeech("TypeScript strict mode enabled everywhere!"); }}
-                className="bg-pink-50 border-2 border-slate-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_#0f172a] hover:scale-102 transition cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900"
+                className="bg-pink-50 border-2 border-slate-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_#0f172a] hover:scale-102 transition cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900 overflow-hidden"
               >
-                <Layers className="w-6 h-6 mx-auto mb-2 text-pink-600" />
-                <h3 className="font-black text-slate-900 text-sm">Frontend Magic</h3>
-                <p className="text-xs font-semibold text-slate-600 mt-1">TypeScript, React, Next.js, Tailwind CSS, Vite</p>
+                <Layers className="w-6 h-6 mx-auto mb-2 text-pink-600 shrink-0" />
+                <h3 className="font-black text-slate-900 text-sm break-words">Frontend Magic</h3>
+                <p className="text-xs font-semibold text-slate-600 mt-1 break-words">TypeScript, React, Next.js, Tailwind CSS, Vite</p>
               </button>
               <button 
                 type="button"
                 onClick={() => { sound.playWhoosh(); setActiveSpeech("Model Context Protocol AST parsing reduces token costs by 70%!"); }}
-                className="bg-amber-50 border-2 border-slate-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_#0f172a] hover:scale-102 transition cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900"
+                className="bg-amber-50 border-2 border-slate-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_#0f172a] hover:scale-102 transition cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900 overflow-hidden"
               >
-                <Terminal className="w-6 h-6 mx-auto mb-2 text-amber-600" />
-                <h3 className="font-black text-slate-900 text-sm">AI Orchestration</h3>
-                <p className="text-xs font-semibold text-slate-600 mt-1">MCP protocol, SCIP AST trees, structured outputs</p>
+                <Terminal className="w-6 h-6 mx-auto mb-2 text-amber-600 shrink-0" />
+                <h3 className="font-black text-slate-900 text-sm break-words">AI Orchestration</h3>
+                <p className="text-xs font-semibold text-slate-600 mt-1 break-words">MCP protocol, SCIP AST trees, structured outputs</p>
               </button>
               <button 
                 type="button"
                 onClick={() => { sound.playSparkle(); setActiveSpeech("Observability with New Relic and deterministic testing!"); }}
-                className="bg-emerald-50 border-2 border-slate-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_#0f172a] hover:scale-102 transition cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900"
+                className="bg-emerald-50 border-2 border-slate-900 rounded-xl p-4 text-center shadow-[3px_3px_0px_#0f172a] hover:scale-102 transition cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900 overflow-hidden"
               >
-                <Code2 className="w-6 h-6 mx-auto mb-2 text-emerald-600" />
-                <h3 className="font-black text-slate-900 text-sm">Observability</h3>
-                <p className="text-xs font-semibold text-slate-600 mt-1">New Relic, tracing, LeetCode 200+, unit testing</p>
+                <Code2 className="w-6 h-6 mx-auto mb-2 text-emerald-600 shrink-0" />
+                <h3 className="font-black text-slate-900 text-sm break-words">Observability</h3>
+                <p className="text-xs font-semibold text-slate-600 mt-1 break-words">New Relic, tracing, LeetCode 200+, unit testing</p>
               </button>
             </div>
           </div>
@@ -407,7 +409,7 @@ export default function App() {
               {ESSAYS.map((essay, idx) => (
                 <div 
                   key={essay.title}
-                  className="p-4 rounded-xl border-2 border-slate-900 bg-amber-50/40 hover:bg-amber-50 shadow-[2px_2px_0px_#0f172a] transition"
+                  className="p-4 rounded-xl border-2 border-slate-900 bg-amber-50/40 hover:bg-amber-50 shadow-[2px_2px_0px_#0f172a] transition overflow-hidden"
                 >
                   <button
                     type="button"
@@ -415,22 +417,22 @@ export default function App() {
                       setSelectedEssay(selectedEssay === idx ? null : idx);
                       sound.playBlip();
                     }}
-                    className="w-full text-left flex justify-between items-start cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900"
+                    className="w-full text-left flex justify-between items-start cursor-pointer focus:outline-hidden focus:ring-2 focus:ring-slate-900 gap-3"
                   >
-                    <div>
-                      <h3 className="font-black text-sm text-slate-900 hover:text-pink-600 transition">
+                    <div className="overflow-hidden">
+                      <h3 className="font-black text-sm text-slate-900 hover:text-pink-600 transition break-words">
                         {essay.title}
                       </h3>
-                      <p className="text-xs font-medium text-slate-600 mt-1">
+                      <p className="text-xs font-medium text-slate-600 mt-1 break-words">
                         {essay.summary}
                       </p>
                     </div>
-                    <span className="text-xs text-slate-500 font-bold ml-4 shrink-0">
+                    <span className="text-xs text-slate-500 font-bold ml-2 shrink-0 whitespace-nowrap">
                       {essay.date}
                     </span>
                   </button>
                   {selectedEssay === idx && (
-                    <div className="mt-3 p-4 rounded-lg bg-white text-xs leading-relaxed text-slate-800 border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a]">
+                    <div className="mt-3 p-4 rounded-lg bg-white text-xs leading-relaxed text-slate-800 border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] break-words overflow-hidden">
                       {essay.content}
                     </div>
                   )}

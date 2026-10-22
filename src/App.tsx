@@ -134,10 +134,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen halftone-bg py-8 px-4 sm:px-6 md:px-12 selection:bg-pink-300 selection:text-slate-900 overflow-x-hidden">
-      <div className="max-w-4xl mx-auto space-y-8 overflow-hidden">
+      <div className="max-w-4xl mx-auto space-y-8">
         
         {/* Manga Top Banner */}
-        <MangaPanel className="flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        <MangaPanel className="flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden pt-6 sm:pt-8">
           <div className="absolute -right-6 -bottom-6 opacity-10 pointer-events-none select-none text-8xl sm:text-9xl font-black text-slate-900 hidden sm:block">
             日常
           </div>
@@ -214,9 +214,9 @@ export default function App() {
           <div className="grid md:grid-cols-5 gap-6 items-center">
             <div className="md:col-span-3 space-y-4">
               <SpeechBubble variant="shout" className="mb-4">
-                <span className="flex items-center gap-2">
-                  <Laugh className="w-4 h-4 text-pink-600 shrink-0" />
-                  "{activeSpeech}"
+                <span className="flex items-start gap-2">
+                  <Laugh className="w-5 h-5 text-pink-600 shrink-0 mt-0.5" />
+                  <span className="break-words leading-relaxed">"{activeSpeech}"</span>
                 </span>
               </SpeechBubble>
 
